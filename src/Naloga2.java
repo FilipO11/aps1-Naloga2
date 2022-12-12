@@ -38,8 +38,8 @@ public class Naloga2 {
 
         @Override
         public void add(Integer x) {
-            if(++size == capacity) resize();
-            set(size, x);
+            if(size == capacity) resize();
+            set(size++, x);
         }
 
         private void resize() {
@@ -65,12 +65,10 @@ public class Naloga2 {
             return size;
         }
 
-        public String toString(int i){
-            int idx = 0;
+        public String toString(){
             StringBuilder sb = new StringBuilder();
-            while (idx >= size) {
-                sb.append(array[idx++] + " ");
-                if (idx == i) sb.append("| ");
+            for (int idx = 0; idx < size; idx++) {
+                sb.append(array[idx] + " ");
             }
             return sb.toString().trim();
         }
@@ -142,9 +140,11 @@ public class Naloga2 {
 
     private static void insert(boolean count, boolean desc, mySequence array) {
         int m, c, tmp, i;
+        StringBuilder stats = new StringBuilder();
         mySequence a = array;
         m = c = i = 0;
 
+        // Unsorted
         while (++i < a.size()){
             tmp = a.get(i);
             m++;
@@ -170,6 +170,82 @@ public class Naloga2 {
                     m++;
                 }
             }
+            if (!count) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = 0; idx < a.size(); idx++) {
+                    sb.append(a.get(idx) + " ");
+                    if (idx == i) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+        }
+
+        // Extra sorts
+        if (count) {
+            stats.append(m + " " + c);
+            m = c = i = 0;
+
+            // Sorted
+            while (++i < a.size()){
+                tmp = a.get(i);
+                m++;
+                for(int j=i-1; j >= 0; j--){
+                    c++;
+                    // tmp is smaller than a[j]
+                    if ((tmp < a.get(j)) != desc) {
+                        // move a[j] to the right
+                        a.set(j+1, a.get(j));
+                        m++;
+                    }
+                    // tmp is bigger than a[j]
+                    else {
+                        // insert tmp
+                        a.set(j+1, tmp);
+                        m++;
+                        break;
+                    }
+                    // tmp is smallest elt
+                    if (j == 0) {
+                        // insert tmp as first elt
+                        a.set(0, tmp);
+                        m++;
+                    }
+                }
+            }
+            stats.append(" | " + m + " " + c);
+
+            m = c = i = 0;
+            // Sorted in reverse
+            desc = !desc;
+            while (++i < a.size()){
+                tmp = a.get(i);
+                m++;
+                for(int j=i-1; j >= 0; j--){
+                    c++;
+                    // tmp is smaller than a[j]
+                    if ((tmp < a.get(j)) != desc) {
+                        // move a[j] to the right
+                        a.set(j+1, a.get(j));
+                        m++;
+                    }
+                    // tmp is bigger than a[j]
+                    else {
+                        // insert tmp
+                        a.set(j+1, tmp);
+                        m++;
+                        break;
+                    }
+                    // tmp is smallest elt
+                    if (j == 0) {
+                        // insert tmp as first elt
+                        a.set(0, tmp);
+                        m++;
+                    }
+                }
+            }
+            stats.append(" | " + m + " " + c);
+
+            System.out.println(stats.toString());
         }
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="added sequence interface and class">
+    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="updated mySequence; added main, processInput">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Naloga2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Naloga2.java" afterDir="false" />
     </list>
@@ -56,7 +56,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1670681696353</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="updated mySequence; added main, processInput">
+      <created>1670766983768</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1670766983768</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -73,6 +79,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="added sequence interface and class" />
-    <option name="LAST_COMMIT_MESSAGE" value="added sequence interface and class" />
+    <MESSAGE value="updated mySequence; added main, processInput" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated mySequence; added main, processInput" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Naloga2.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
