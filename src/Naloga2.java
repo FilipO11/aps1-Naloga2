@@ -115,7 +115,7 @@ public class Naloga2 {
                 insert(count, desc, array);
                 break;
             case "select":
-
+                select(count, desc, array);
                 break;
             case "bubble":
 
@@ -248,4 +248,93 @@ public class Naloga2 {
             System.out.println(stats.toString());
         }
     }
+
+    private static void select(boolean count, boolean desc, mySequence array) {
+        int m, c, /*tmp,*/ minIdx;
+        StringBuilder stats = new StringBuilder();
+        mySequence a = array;
+        m = c = 0;
+
+        // Unsorted
+        for (int i = 0; i < a.size()-1; i++) {
+            // register a[i] as min
+            minIdx = i;
+
+            // find min
+            for (int j = i + 1; j < a.size(); j++) {
+                c++;
+                // a[j] is smaller than current min
+                if ((a.get(j) < a.get(minIdx)) != desc) {
+                    // register a[j] as min
+                    minIdx = j;
+                }
+            }
+
+            // swap a[i] and min
+            a.swap(i, minIdx);
+            m+=3;
+
+            // print progress
+            if (!count) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = 0; idx < a.size(); idx++) {
+                    sb.append(a.get(idx) + " ");
+                    if (idx == i) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+        }
+
+        if (count) {
+            stats.append(m + " " + c);
+            m = c = 0;
+
+            // Sorted
+            for (int i = 0; i < a.size()-1; i++) {
+                // register a[i] as min
+                minIdx = i;
+
+                // find min
+                for (int j = i + 1; j < a.size(); j++) {
+                    c++;
+                    // a[j] is smaller than current min
+                    if ((a.get(j) < a.get(minIdx)) != desc) {
+                        // register a[j] as min
+                        minIdx = j;
+                    }
+                }
+
+                // swap a[i] and min
+                a.swap(i, minIdx);
+                m+=3;
+            }
+            stats.append(" | " + m + " " + c);
+            m = c = 0;
+
+            // Sorted in reverse
+            desc = !desc;
+            for (int i = 0; i < a.size()-1; i++) {
+                // register a[i] as min
+                minIdx = i;
+
+                // find min
+                for (int j = i + 1; j < a.size(); j++) {
+                    c++;
+                    // a[j] is smaller than current min
+                    if ((a.get(j) < a.get(minIdx)) != desc) {
+                        // register a[j] as min
+                        minIdx = j;
+                    }
+                }
+
+                // swap a[i] and min
+                a.swap(i, minIdx);
+                m+=3;
+            }
+            stats.append(" | " + m + " " + c);
+
+            System.out.println(stats.toString());
+        }
+    }
+
 }
