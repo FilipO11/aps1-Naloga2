@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="added insertion sort; updated mySequence to add properly">
+    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="added selection sort">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Naloga2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Naloga2.java" afterDir="false" />
     </list>
@@ -35,6 +35,22 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Filip\IdeaProjects\aps1\Naloga2" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="bubble" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Naloga2" />
+      <module name="Naloga2" />
+      <option name="REDIRECT_INPUT" value="true" />
+      <option name="INPUT_FILE" value="$PROJECT_DIR$/bubble.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +84,13 @@
       <option name="presentableId" value="LOCAL−00004" />
       <updated>1670851182023</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL−00005" summary="added selection sort">
+      <created>1670929976408</created>
+      <option name="number" value="LOCAL−00005" />
+      <option name="presentableId" value="LOCAL−00005" />
+      <updated>1670929976408</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -87,15 +109,21 @@
     <MESSAGE value="added sequence interface and class" />
     <MESSAGE value="updated mySequence; added main, processInput" />
     <MESSAGE value="added insertion sort; updated mySequence to add properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="added insertion sort; updated mySequence to add properly" />
+    <MESSAGE value="added selection sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="added selection sort" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Naloga2.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="1" />
+          <line>120</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Naloga2.java</url>
+          <line>411</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -118,7 +118,7 @@ public class Naloga2 {
                 select(count, desc, array);
                 break;
             case "bubble":
-
+                bubble(count, desc, array);
                 break;
             case "heap":
 
@@ -250,7 +250,7 @@ public class Naloga2 {
     }
 
     private static void select(boolean count, boolean desc, mySequence array) {
-        int m, c, /*tmp,*/ minIdx;
+        int m, c, minIdx;
         StringBuilder stats = new StringBuilder();
         mySequence a = array;
         m = c = 0;
@@ -285,6 +285,7 @@ public class Naloga2 {
             }
         }
 
+        // Extra sorts
         if (count) {
             stats.append(m + " " + c);
             m = c = 0;
@@ -334,6 +335,102 @@ public class Naloga2 {
             stats.append(" | " + m + " " + c);
 
             System.out.println(stats.toString());
+        }
+    }
+
+    private static void bubble(boolean count, boolean desc, mySequence array) {
+        StringBuilder stats = new StringBuilder();
+        mySequence a = array;
+        int m, c, i, lastSwap;
+        m = c = 0;
+        i = -1;
+
+        // Unsorted
+        while (i < a.size() - 1) {
+            lastSwap = a.size() - 1;
+
+            // from end to lastSwap
+            for (int j = a.size()-1; j > i+1; j--) {
+                c++;
+                // a[j] is smaller than predecessor
+                if ((a.get(j) < a.get(j-1)) != desc) {
+                    // swap a[j] and predecessor
+                    a.swap(j, j-1);
+                    m += 3;
+                    // register as last swap
+                    lastSwap = j-1;
+                }
+            }
+
+            // jump to last swap
+            i = lastSwap;
+            if (i >= a.size() - 1) break;
+
+            // print progress
+            if (!count) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = 0; idx < a.size(); idx++) {
+                    sb.append(a.get(idx) + " ");
+                    if (idx == i) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+        }
+
+        // Extra sorts
+        if (count) {
+            stats.append(m + " " + c);
+            m = c = 0;
+            i = -1;
+
+            // Sorted
+            while (i < a.size() - 1) {
+                lastSwap = a.size() - 1;
+                // from end to lastSwap
+                for (int j = a.size()-1; j > i+1; j--) {
+                    c++;
+                    // a[j] is smaller than predecessor
+                    if ((a.get(j) < a.get(j-1)) != desc) {
+                        // swap a[j] and predecessor
+                        a.swap(j, j-1);
+                        m += 3;
+                        // register as last swap
+                        lastSwap = j-1;
+                    }
+                }
+
+                // jump to last swap
+                i = lastSwap;
+                if (i >= a.size() - 1) break;
+            }
+            stats.append(" | " + m + " " + c);
+            m = c = 0;
+            i = -1;
+
+            // Sorted in reverse
+            desc = !desc;
+            while (i < a.size() - 1) {
+                lastSwap = a.size() - 1;
+                // from end to lastSwap
+                for (int j = a.size()-1; j > i+1; j--) {
+                    c++;
+                    // a[j] is smaller than predecessor
+                    if ((a.get(j) < a.get(j-1)) != desc) {
+                        // swap a[j] and predecessor
+                        a.swap(j, j-1);
+                        m += 3;
+                        // register as last swap
+                        lastSwap = j-1;
+                    }
+                }
+
+                // jump to last swap
+                i = lastSwap;
+                if (i >= a.size() - 1) break;
+            }
+            stats.append(" | " + m + " " + c);
+
+            System.out.println(stats);
         }
     }
 
