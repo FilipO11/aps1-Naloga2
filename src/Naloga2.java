@@ -141,39 +141,38 @@ public class Naloga2 {
     private static void insert(boolean count, boolean desc, mySequence array) {
         int m, c, tmp, i;
         StringBuilder stats = new StringBuilder();
-        mySequence a = array;
         m = c = i = 0;
 
         // Unsorted
-        while (++i < a.size()){
-            tmp = a.get(i);
+        while (++i < array.size()){
+            tmp = array.get(i);
             m++;
             for(int j=i-1; j >= 0; j--){
                 c++;
-                // tmp is smaller than a[j]
-                if ((tmp < a.get(j)) != desc) {
-                    // move a[j] to the right
-                    a.set(j+1, a.get(j));
+                // tmp is smaller than array[j]
+                if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                    // move array[j] to the right
+                    array.set(j+1, array.get(j));
                     m++;
                 }
-                // tmp is bigger than a[j]
+                // tmp is bigger than array[j]
                 else {
                     // insert tmp
-                    a.set(j+1, tmp);
+                    array.set(j+1, tmp);
                     m++;
                     break;
                 }
                 // tmp is smallest elt
                 if (j == 0) {
                     // insert tmp as first elt
-                    a.set(0, tmp);
+                    array.set(0, tmp);
                     m++;
                 }
             }
             if (!count) {
                 StringBuilder sb = new StringBuilder();
-                for (int idx = 0; idx < a.size(); idx++) {
-                    sb.append(a.get(idx) + " ");
+                for (int idx = 0; idx < array.size(); idx++) {
+                    sb.append(array.get(idx) + " ");
                     if (idx == i) sb.append("| ");
                 }
                 System.out.println(sb.toString().trim());
@@ -186,28 +185,28 @@ public class Naloga2 {
             m = c = i = 0;
 
             // Sorted
-            while (++i < a.size()){
-                tmp = a.get(i);
+            while (++i < array.size()){
+                tmp = array.get(i);
                 m++;
                 for(int j=i-1; j >= 0; j--){
                     c++;
-                    // tmp is smaller than a[j]
-                    if ((tmp < a.get(j)) != desc) {
-                        // move a[j] to the right
-                        a.set(j+1, a.get(j));
+                    // tmp is smaller than array[j]
+                    if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                        // move array[j] to the right
+                        array.set(j+1, array.get(j));
                         m++;
                     }
-                    // tmp is bigger than a[j]
+                    // tmp is bigger than array[j]
                     else {
                         // insert tmp
-                        a.set(j+1, tmp);
+                        array.set(j+1, tmp);
                         m++;
                         break;
                     }
                     // tmp is smallest elt
                     if (j == 0) {
                         // insert tmp as first elt
-                        a.set(0, tmp);
+                        array.set(0, tmp);
                         m++;
                     }
                 }
@@ -217,28 +216,28 @@ public class Naloga2 {
             m = c = i = 0;
             // Sorted in reverse
             desc = !desc;
-            while (++i < a.size()){
-                tmp = a.get(i);
+            while (++i < array.size()){
+                tmp = array.get(i);
                 m++;
                 for(int j=i-1; j >= 0; j--){
                     c++;
-                    // tmp is smaller than a[j]
-                    if ((tmp < a.get(j)) != desc) {
-                        // move a[j] to the right
-                        a.set(j+1, a.get(j));
+                    // tmp is smaller than array[j]
+                    if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                        // move array[j] to the right
+                        array.set(j+1, array.get(j));
                         m++;
                     }
-                    // tmp is bigger than a[j]
+                    // tmp is bigger than array[j]
                     else {
                         // insert tmp
-                        a.set(j+1, tmp);
+                        array.set(j+1, tmp);
                         m++;
                         break;
                     }
                     // tmp is smallest elt
                     if (j == 0) {
                         // insert tmp as first elt
-                        a.set(0, tmp);
+                        array.set(0, tmp);
                         m++;
                     }
                 }
@@ -252,33 +251,32 @@ public class Naloga2 {
     private static void select(boolean count, boolean desc, mySequence array) {
         int m, c, minIdx;
         StringBuilder stats = new StringBuilder();
-        mySequence a = array;
         m = c = 0;
 
         // Unsorted
-        for (int i = 0; i < a.size()-1; i++) {
-            // register a[i] as min
+        for (int i = 0; i < array.size()-1; i++) {
+            // register array[i] as min
             minIdx = i;
 
             // find min
-            for (int j = i + 1; j < a.size(); j++) {
+            for (int j = i + 1; j < array.size(); j++) {
                 c++;
-                // a[j] is smaller than current min
-                if ((a.get(j) < a.get(minIdx)) != desc) {
-                    // register a[j] as min
+                // array[j] is smaller than current min
+                if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                    // register array[j] as min
                     minIdx = j;
                 }
             }
 
-            // swap a[i] and min
-            a.swap(i, minIdx);
+            // swap array[i] and min
+            array.swap(i, minIdx);
             m+=3;
 
             // print progress
             if (!count) {
                 StringBuilder sb = new StringBuilder();
-                for (int idx = 0; idx < a.size(); idx++) {
-                    sb.append(a.get(idx) + " ");
+                for (int idx = 0; idx < array.size(); idx++) {
+                    sb.append(array.get(idx) + " ");
                     if (idx == i) sb.append("| ");
                 }
                 System.out.println(sb.toString().trim());
@@ -291,22 +289,22 @@ public class Naloga2 {
             m = c = 0;
 
             // Sorted
-            for (int i = 0; i < a.size()-1; i++) {
-                // register a[i] as min
+            for (int i = 0; i < array.size()-1; i++) {
+                // register array[i] as min
                 minIdx = i;
 
                 // find min
-                for (int j = i + 1; j < a.size(); j++) {
+                for (int j = i + 1; j < array.size(); j++) {
                     c++;
-                    // a[j] is smaller than current min
-                    if ((a.get(j) < a.get(minIdx)) != desc) {
-                        // register a[j] as min
+                    // array[j] is smaller than current min
+                    if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                        // register array[j] as min
                         minIdx = j;
                     }
                 }
 
-                // swap a[i] and min
-                a.swap(i, minIdx);
+                // swap array[i] and min
+                array.swap(i, minIdx);
                 m+=3;
             }
             stats.append(" | " + m + " " + c);
@@ -314,22 +312,22 @@ public class Naloga2 {
 
             // Sorted in reverse
             desc = !desc;
-            for (int i = 0; i < a.size()-1; i++) {
-                // register a[i] as min
+            for (int i = 0; i < array.size()-1; i++) {
+                // register array[i] as min
                 minIdx = i;
 
                 // find min
-                for (int j = i + 1; j < a.size(); j++) {
+                for (int j = i + 1; j < array.size(); j++) {
                     c++;
-                    // a[j] is smaller than current min
-                    if ((a.get(j) < a.get(minIdx)) != desc) {
-                        // register a[j] as min
+                    // array[j] is smaller than current min
+                    if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                        // register array[j] as min
                         minIdx = j;
                     }
                 }
 
-                // swap a[i] and min
-                a.swap(i, minIdx);
+                // swap array[i] and min
+                array.swap(i, minIdx);
                 m+=3;
             }
             stats.append(" | " + m + " " + c);
@@ -340,22 +338,21 @@ public class Naloga2 {
 
     private static void bubble(boolean count, boolean desc, mySequence array) {
         StringBuilder stats = new StringBuilder();
-        mySequence a = array;
         int m, c, i, lastSwap;
         m = c = 0;
         i = -1;
 
         // Unsorted
-        while (i < a.size() - 1) {
-            lastSwap = a.size() - 1;
+        while (i < array.size() - 2) {
+            lastSwap = array.size() - 2;
 
             // from end to lastSwap
-            for (int j = a.size()-1; j > i+1; j--) {
+            for (int j = array.size()-1; j > i+1; j--) {
                 c++;
-                // a[j] is smaller than predecessor
-                if ((a.get(j) < a.get(j-1)) != desc) {
-                    // swap a[j] and predecessor
-                    a.swap(j, j-1);
+                // array[j] is smaller than predecessor
+                if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                    // swap array[j] and predecessor
+                    array.swap(j, j-1);
                     m += 3;
                     // register as last swap
                     lastSwap = j-1;
@@ -364,13 +361,13 @@ public class Naloga2 {
 
             // jump to last swap
             i = lastSwap;
-            if (i >= a.size() - 1) break;
+            //if (i >= array.size() - 1) break;
 
             // print progress
             if (!count) {
                 StringBuilder sb = new StringBuilder();
-                for (int idx = 0; idx < a.size(); idx++) {
-                    sb.append(a.get(idx) + " ");
+                for (int idx = 0; idx < array.size(); idx++) {
+                    sb.append(array.get(idx) + " ");
                     if (idx == i) sb.append("| ");
                 }
                 System.out.println(sb.toString().trim());
@@ -384,15 +381,16 @@ public class Naloga2 {
             i = -1;
 
             // Sorted
-            while (i < a.size() - 1) {
-                lastSwap = a.size() - 1;
+            while (i < array.size() - 2) {
+                lastSwap = array.size() - 2;
+
                 // from end to lastSwap
-                for (int j = a.size()-1; j > i+1; j--) {
+                for (int j = array.size()-1; j > i+1; j--) {
                     c++;
-                    // a[j] is smaller than predecessor
-                    if ((a.get(j) < a.get(j-1)) != desc) {
-                        // swap a[j] and predecessor
-                        a.swap(j, j-1);
+                    // array[j] is smaller than predecessor
+                    if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                        // swap array[j] and predecessor
+                        array.swap(j, j-1);
                         m += 3;
                         // register as last swap
                         lastSwap = j-1;
@@ -401,7 +399,6 @@ public class Naloga2 {
 
                 // jump to last swap
                 i = lastSwap;
-                if (i >= a.size() - 1) break;
             }
             stats.append(" | " + m + " " + c);
             m = c = 0;
@@ -409,15 +406,16 @@ public class Naloga2 {
 
             // Sorted in reverse
             desc = !desc;
-            while (i < a.size() - 1) {
-                lastSwap = a.size() - 1;
+            while (i < array.size() - 2) {
+                lastSwap = array.size() - 2;
+
                 // from end to lastSwap
-                for (int j = a.size()-1; j > i+1; j--) {
+                for (int j = array.size()-1; j > i+1; j--) {
                     c++;
-                    // a[j] is smaller than predecessor
-                    if ((a.get(j) < a.get(j-1)) != desc) {
-                        // swap a[j] and predecessor
-                        a.swap(j, j-1);
+                    // array[j] is smaller than predecessor
+                    if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                        // swap array[j] and predecessor
+                        array.swap(j, j-1);
                         m += 3;
                         // register as last swap
                         lastSwap = j-1;
@@ -426,7 +424,6 @@ public class Naloga2 {
 
                 // jump to last swap
                 i = lastSwap;
-                if (i >= a.size() - 1) break;
             }
             stats.append(" | " + m + " " + c);
 
