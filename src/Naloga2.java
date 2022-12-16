@@ -80,6 +80,11 @@ public class Naloga2 {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
+            // output separation
+            if (input.equals("")) {
+                System.out.println("\n####################\n");
+                continue;
+            }
             array = processArray(scanner.nextLine());
             processInput(input);
             reinitialize();
@@ -150,7 +155,7 @@ public class Naloga2 {
             for(int j=i-1; j >= 0; j--){
                 c++;
                 // tmp is smaller than array[j]
-                if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                if (desc && tmp > array.get(j) || !desc && tmp < array.get(j)) {
                     // move array[j] to the right
                     array.set(j+1, array.get(j));
                     m++;
@@ -191,7 +196,7 @@ public class Naloga2 {
                 for(int j=i-1; j >= 0; j--){
                     c++;
                     // tmp is smaller than array[j]
-                    if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                    if (desc && tmp > array.get(j) || !desc && tmp < array.get(j)) {
                         // move array[j] to the right
                         array.set(j+1, array.get(j));
                         m++;
@@ -222,7 +227,7 @@ public class Naloga2 {
                 for(int j=i-1; j >= 0; j--){
                     c++;
                     // tmp is smaller than array[j]
-                    if ((desc && tmp > array.get(j)) || tmp < array.get(j)) {
+                    if (desc && tmp > array.get(j) || !desc && tmp < array.get(j)) {
                         // move array[j] to the right
                         array.set(j+1, array.get(j));
                         m++;
@@ -262,7 +267,7 @@ public class Naloga2 {
             for (int j = i + 1; j < array.size(); j++) {
                 c++;
                 // array[j] is smaller than current min
-                if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                if (desc && array.get(j) > array.get(minIdx) || !desc && array.get(j) < array.get(minIdx)) {
                     // register array[j] as min
                     minIdx = j;
                 }
@@ -297,7 +302,7 @@ public class Naloga2 {
                 for (int j = i + 1; j < array.size(); j++) {
                     c++;
                     // array[j] is smaller than current min
-                    if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                    if (desc && array.get(j) > array.get(minIdx) || !desc && array.get(j) < array.get(minIdx)) {
                         // register array[j] as min
                         minIdx = j;
                     }
@@ -320,7 +325,7 @@ public class Naloga2 {
                 for (int j = i + 1; j < array.size(); j++) {
                     c++;
                     // array[j] is smaller than current min
-                    if ((desc && array.get(j) > array.get(minIdx)) || array.get(j) < array.get(minIdx)) {
+                    if (desc && array.get(j) > array.get(minIdx) || !desc && array.get(j) < array.get(minIdx)) {
                         // register array[j] as min
                         minIdx = j;
                     }
@@ -350,7 +355,7 @@ public class Naloga2 {
             for (int j = array.size()-1; j > i+1; j--) {
                 c++;
                 // array[j] is smaller than predecessor
-                if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                if (desc && array.get(j) > array.get(j-1) || !desc && array.get(j) < array.get(j-1)) {
                     // swap array[j] and predecessor
                     array.swap(j, j-1);
                     m += 3;
@@ -388,7 +393,7 @@ public class Naloga2 {
                 for (int j = array.size()-1; j > i+1; j--) {
                     c++;
                     // array[j] is smaller than predecessor
-                    if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                    if (desc && array.get(j) > array.get(j-1) || !desc && array.get(j) < array.get(j-1)) {
                         // swap array[j] and predecessor
                         array.swap(j, j-1);
                         m += 3;
@@ -413,7 +418,7 @@ public class Naloga2 {
                 for (int j = array.size()-1; j > i+1; j--) {
                     c++;
                     // array[j] is smaller than predecessor
-                    if ((desc && array.get(j) > array.get(j-1)) || array.get(j) < array.get(j-1)) {
+                    if (desc && array.get(j) > array.get(j-1) || !desc && array.get(j) < array.get(j-1)) {
                         // swap array[j] and predecessor
                         array.swap(j, j-1);
                         m += 3;
@@ -432,3 +437,4 @@ public class Naloga2 {
     }
 
 }
+// VERSION 1.1
