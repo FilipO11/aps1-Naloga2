@@ -117,22 +117,22 @@ public class Naloga2 {
         if(!count) System.out.println(array.toString());
         switch (sort){
             case "insert":
-                insert(count, desc, array);
+                insert(count, desc);
                 break;
             case "select":
-                select(count, desc, array);
+                select(count, desc);
                 break;
             case "bubble":
-                bubble(count, desc, array);
+                bubble(count, desc);
                 break;
             case "heap":
-
+                heap(count, desc);
                 break;
             case "merge":
-
+                merge(count, desc);
                 break;
             case "quick":
-
+                quick(count, desc);
                 break;
             case "radix":
 
@@ -143,7 +143,7 @@ public class Naloga2 {
         }
     }
 
-    private static void insert(boolean count, boolean desc, mySequence array) {
+    private static void insert(boolean count, boolean desc) {
         int m, c, tmp, i;
         StringBuilder stats = new StringBuilder();
         m = c = i = 0;
@@ -253,7 +253,7 @@ public class Naloga2 {
         }
     }
 
-    private static void select(boolean count, boolean desc, mySequence array) {
+    private static void select(boolean count, boolean desc) {
         int m, c, minIdx;
         StringBuilder stats = new StringBuilder();
         m = c = 0;
@@ -341,7 +341,7 @@ public class Naloga2 {
         }
     }
 
-    private static void bubble(boolean count, boolean desc, mySequence array) {
+    private static void bubble(boolean count, boolean desc) {
         StringBuilder stats = new StringBuilder();
         int m, c, i, lastSwap;
         m = c = 0;
@@ -436,5 +436,148 @@ public class Naloga2 {
         }
     }
 
+    private static void heap(boolean count, boolean desc) {
+        StringBuilder stats = new StringBuilder();
+        int m, c;
+        int[] heapifyStats = {0, 0};
+        m = c = 0;
+
+        // Unsorted
+
+        // heapify original
+        for (int i = array.size() / 2 - 1; i >= 0; i--) {
+            heapifyStats = heapify(desc, array.size(), i);
+            m += heapifyStats[0];
+            c += heapifyStats[1];
+        }
+
+        // extract and heapify
+        for (int end = array.size() - 1; end >= 0; end--) {
+            // print progress
+            if (!count) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = 0; idx < array.size(); idx++) {
+                    sb.append(array.get(idx) + " ");
+                    if (idx == end) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+
+            if (end == 0) break;
+
+            // swap
+            array.swap(end, 0);
+            m+=3;
+
+            // heapify
+            heapifyStats = heapify(desc, end, 0);
+            m += heapifyStats[0];
+            c += heapifyStats[1];
+        }
+
+        // Extra sorts
+        if (count) {
+            stats.append(m + " " + c);
+            m = c = 0;
+
+            // Sorted
+
+            // heapify original
+            for (int i = array.size() / 2 - 1; i >= 0; i--) {
+                heapifyStats = heapify(desc, array.size(), i);
+                m += heapifyStats[0];
+                c += heapifyStats[1];
+            }
+
+            // extract and heapify
+            for (int end = array.size() - 1; end > 0; end--) {
+                // swap
+                array.swap(end, 0);
+                m+=3;
+
+                // heapify
+                heapifyStats = heapify(desc, end, 0);
+                m += heapifyStats[0];
+                c += heapifyStats[1];
+            }
+            stats.append(" | " + m + " " + c);
+            m = c = 0;
+
+            // Sorted in reverse
+
+            desc = !desc;
+            // heapify original
+            for (int i = array.size() / 2 - 1; i >= 0; i--) {
+                heapifyStats = heapify(desc, array.size(), i);
+                m += heapifyStats[0];
+                c += heapifyStats[1];
+            }
+
+            // extract and heapify
+            for (int end = array.size() - 1; end > 0; end--) {
+                // swap
+                array.swap(end, 0);
+                m+=3;
+
+                // heapify
+                heapifyStats = heapify(desc, end, 0);
+                m += heapifyStats[0];
+                c += heapifyStats[1];
+            }
+            stats.append(" | " + m + " " + c);
+
+            System.out.println(stats);
+        }
+    }
+
+    private static int[] heapify(boolean desc, int end, int root) {
+        int m, c;
+        m = c = 0;
+        int[] stats = {0, 0};
+
+        // initialize max as root
+        int max = root;
+
+        // root is a leaf (left does not exist)
+        if (2*root + 1 >= end) return stats;
+
+        // left is greater than root
+        c++;
+        if (desc && array.get(2*root + 1) < array.get(max) || !desc && array.get(2*root + 1) > array.get(max))
+            max = 2*root + 1;
+
+        // right exists
+        if (2*root + 2 < end) {
+            // right is greater than max
+            c++;
+            if (desc && array.get(2 * root + 2) < array.get(max) || !desc && array.get(2 * root + 2) > array.get(max))
+                max = 2 * root + 2;
+        }
+
+        // max is not root
+        if (max != root) {
+            // swap
+            array.swap(max, root);
+            m += 3;
+
+            // heapify max child's subtree
+            int[] recursionStats = heapify(desc, end, max);
+            m += recursionStats[0];
+            c += recursionStats[1];
+        }
+
+        stats[0] = m;
+        stats[1] = c;
+        return stats;
+    }
+
+    private static void merge(boolean count, boolean desc) {
+
+    }
+
+    private static void quick(boolean count, boolean desc) {
+
+    }
+
 }
-// VERSION 1.1
+// VERSION 2.0

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="fixed equal elts issue">
+    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="fixed desc order issue; added output separation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Naloga2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Naloga2.java" afterDir="false" />
     </list>
@@ -32,24 +32,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TODO_SCOPE": "All Places"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Filip\IdeaProjects\aps1\Naloga2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.insert">
+  <component name="RunManager" selected="Application.heap">
     <configuration name="bubble" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Naloga2" />
       <module name="Naloga2" />
       <option name="REDIRECT_INPUT" value="true" />
       <option name="INPUT_FILE" value="$PROJECT_DIR$/bubble.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="heap" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Naloga2" />
+      <module name="Naloga2" />
+      <option name="REDIRECT_INPUT" value="true" />
+      <option name="INPUT_FILE" value="$PROJECT_DIR$/heap.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -76,6 +85,7 @@
       <item itemvalue="Application.bubble" />
       <item itemvalue="Application.insert" />
       <item itemvalue="Application.select" />
+      <item itemvalue="Application.heap" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -129,7 +139,13 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1671184470837</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="fixed desc order issue; added output separation">
+      <created>1671186342589</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1671186342589</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,15 +167,16 @@
     <MESSAGE value="added selection sort" />
     <MESSAGE value="added bubble sort" />
     <MESSAGE value="fixed equal elts issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed equal elts issue" />
+    <MESSAGE value="fixed desc order issue; added output separation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed desc order issue; added output separation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Naloga2.java</url>
-          <line>125</line>
-          <option name="timeStamp" value="12" />
+          <line>128</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
