@@ -117,22 +117,22 @@ public class Naloga2 {
         if(!count) System.out.println(array.toString());
         switch (sort){
             case "insert":
-                insert(count, desc);
+                insertSort(count, desc);
                 break;
             case "select":
-                select(count, desc);
+                selectSort(count, desc);
                 break;
             case "bubble":
-                bubble(count, desc);
+                bubbleSort(count, desc);
                 break;
             case "heap":
-                heap(count, desc);
+                heapSort(count, desc);
                 break;
             case "merge":
-                merge(count, desc);
+                mergeSort(count, desc);
                 break;
             case "quick":
-                quick(count, desc);
+                quickSort(count, desc);
                 break;
             case "radix":
 
@@ -143,7 +143,7 @@ public class Naloga2 {
         }
     }
 
-    private static void insert(boolean count, boolean desc) {
+    private static void insertSort(boolean count, boolean desc) {
         int m, c, tmp, i;
         StringBuilder stats = new StringBuilder();
         m = c = i = 0;
@@ -253,7 +253,7 @@ public class Naloga2 {
         }
     }
 
-    private static void select(boolean count, boolean desc) {
+    private static void selectSort(boolean count, boolean desc) {
         int m, c, minIdx;
         StringBuilder stats = new StringBuilder();
         m = c = 0;
@@ -341,7 +341,7 @@ public class Naloga2 {
         }
     }
 
-    private static void bubble(boolean count, boolean desc) {
+    private static void bubbleSort(boolean count, boolean desc) {
         StringBuilder stats = new StringBuilder();
         int m, c, i, lastSwap;
         m = c = 0;
@@ -436,10 +436,10 @@ public class Naloga2 {
         }
     }
 
-    private static void heap(boolean count, boolean desc) {
+    private static void heapSort(boolean count, boolean desc) {
         StringBuilder stats = new StringBuilder();
         int m, c;
-        int[] heapifyStats = {0, 0};
+        int[] heapifyStats;
         m = c = 0;
 
         // Unsorted
@@ -571,13 +571,140 @@ public class Naloga2 {
         return stats;
     }
 
-    private static void merge(boolean count, boolean desc) {
+    private static void mergeSort(boolean count, boolean desc) {
+        StringBuilder stats = new StringBuilder();
+        int[] sortStats;
 
+        // Unsorted
+        sortStats = sort(count, desc, 0, array.size() - 1);
+
+        // Extra sorts
+        if (count) {
+            stats.append(sortStats[0] + " " + sortStats[1]);
+
+            // Sorted
+            sortStats = sort(count, desc, 0, array.size() - 1);
+            stats.append(" | " + sortStats[0] + " " + sortStats[1]);
+
+            // Sorted in reverse
+            desc = !desc;
+            sortStats = sort(count, desc, 0, array.size() - 1);
+            stats.append(" | " + sortStats[0] + " " + sortStats[1]);
+
+            System.out.println(stats);
+        }
     }
 
-    private static void quick(boolean count, boolean desc) {
+    private static int[] merge(boolean count, boolean desc, int l, int m, int r) {
+        int[] stats = {0, 0};
+
+        // sizes of subarrays
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        // temporary arrays
+        int L[] = new int[n1];
+        int R[] = new int[n2];
+
+        // copy elts to temp arrays
+        for (int i = 0; i < n1; ++i){
+            L[i] = array.get(l + i);
+            stats[0]++; // m++
+        }
+        for (int j = 0; j < n2; ++j) {
+            R[j] = array.get(m + 1 + j);
+            stats[0]++; // m++
+        }
+
+        // indexes for iteration (i for L, j for R, k for main)
+        int i = 0, j = 0;
+        int k = l;
+
+        // merge temp arrays (copy into main)
+        while (i < n1 && j < n2) {
+            stats[1]++; // c++
+            // L[i] is smaller than R[j]
+            if (desc && L[i] >= R[j] || !desc && L[i] <= R[j]) {
+                array.set(k, L[i]);
+                stats[0]++; // m++
+                i++;
+            }
+            // R[j] is smaller than L[i]
+            else {
+                array.set(k, R[j]);
+                stats[0]++; // m++
+                j++;
+            }
+            k++;
+        }
+
+        // copy remains of L
+        while (i < n1) {
+            array.set(k, L[i]);
+            stats[0]++; // m++
+            i++;
+            k++;
+        }
+
+        // copy remains of R
+        while (j < n2) {
+            array.set(k, R[j]);
+            stats[0]++; // m++
+            j++;
+            k++;
+        }
+
+        // print progress
+        if (!count) {
+            StringBuilder sb = new StringBuilder();
+            for (int idx = l; idx < r+1; idx++) {
+                sb.append(array.get(idx) + " ");
+            }
+            System.out.println(sb.toString().trim());
+        }
+
+        return stats;
+    }
+
+    private static int[] sort(boolean count, boolean desc, int l, int r) {
+        int[] stats = {0, 0}, recursionStats;
+
+        // array is larger than 1
+        if (l < r) {
+            // calculate split point
+            int m = l + (r - l) / 2;
+
+            // print progress
+            if (!count) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = l; idx < r+1; idx++) {
+                    sb.append(array.get(idx) + " ");
+                    if (idx == m) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+
+            // sort first split
+            recursionStats = sort(count, desc, l, m);
+            stats[0] += recursionStats[0];
+            stats[1] += recursionStats[1];
+            // sort second split
+            recursionStats = sort(count, desc, m + 1, r);
+            stats[0] += recursionStats[0];
+            stats[1] += recursionStats[1];
+
+            // merge splits
+            recursionStats = merge(count, desc, l, m, r);
+            stats[0] += recursionStats[0];
+            stats[1] += recursionStats[1];
+        }
+
+        return stats;
+    }
+
+    private static void quickSort(boolean count, boolean desc) {
 
     }
 
 }
-// VERSION 2.0
+// VERSION 3.0
