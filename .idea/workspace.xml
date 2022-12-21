@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="added heap sort">
+    <list default="true" id="ba3f1075-0011-4d03-ad20-d966a802f9cc" name="Changes" comment="added merge sort">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Naloga2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Naloga2.java" afterDir="false" />
     </list>
@@ -44,7 +44,7 @@
       <recent name="C:\Users\Filip\IdeaProjects\aps1\Naloga2" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.merge">
+  <component name="RunManager" selected="Application.quick">
     <configuration name="bubble" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Naloga2" />
       <module name="Naloga2" />
@@ -81,6 +81,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="quick" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Naloga2" />
+      <module name="Naloga2" />
+      <option name="REDIRECT_INPUT" value="true" />
+      <option name="INPUT_FILE" value="$PROJECT_DIR$/quick.txt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="select" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Naloga2" />
       <module name="Naloga2" />
@@ -96,6 +105,7 @@
       <item itemvalue="Application.select" />
       <item itemvalue="Application.heap" />
       <item itemvalue="Application.merge" />
+      <item itemvalue="Application.quick" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -161,7 +171,13 @@
       <option name="presentableId" value="LOCAL−00009" />
       <updated>1671447658015</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL−00010" summary="added merge sort">
+      <created>1671455730646</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1671455730646</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,15 +201,16 @@
     <MESSAGE value="fixed equal elts issue" />
     <MESSAGE value="fixed desc order issue; added output separation" />
     <MESSAGE value="added heap sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="added heap sort" />
+    <MESSAGE value="added merge sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="added merge sort" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Naloga2.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="4" />
+          <line>134</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -576,19 +576,19 @@ public class Naloga2 {
         int[] sortStats;
 
         // Unsorted
-        sortStats = sort(count, desc, 0, array.size() - 1);
+        sortStats = mSort(count, desc, 0, array.size() - 1);
 
         // Extra sorts
         if (count) {
             stats.append(sortStats[0] + " " + sortStats[1]);
 
             // Sorted
-            sortStats = sort(count, desc, 0, array.size() - 1);
+            sortStats = mSort(count, desc, 0, array.size() - 1);
             stats.append(" | " + sortStats[0] + " " + sortStats[1]);
 
             // Sorted in reverse
             desc = !desc;
-            sortStats = sort(count, desc, 0, array.size() - 1);
+            sortStats = mSort(count, desc, 0, array.size() - 1);
             stats.append(" | " + sortStats[0] + " " + sortStats[1]);
 
             System.out.println(stats);
@@ -666,8 +666,8 @@ public class Naloga2 {
         return stats;
     }
 
-    private static int[] sort(boolean count, boolean desc, int l, int r) {
-        int[] stats = {0, 0}, recursionStats;
+    private static int[] mSort(boolean count, boolean desc, int l, int r) {
+        int[] stats = {0, 0}, externalStats;
 
         // array is larger than 1
         if (l < r) {
@@ -685,26 +685,126 @@ public class Naloga2 {
             }
 
             // sort first split
-            recursionStats = sort(count, desc, l, m);
-            stats[0] += recursionStats[0];
-            stats[1] += recursionStats[1];
+            externalStats = mSort(count, desc, l, m);
+            stats[0] += externalStats[0];
+            stats[1] += externalStats[1];
             // sort second split
-            recursionStats = sort(count, desc, m + 1, r);
-            stats[0] += recursionStats[0];
-            stats[1] += recursionStats[1];
+            externalStats = mSort(count, desc, m + 1, r);
+            stats[0] += externalStats[0];
+            stats[1] += externalStats[1];
 
             // merge splits
-            recursionStats = merge(count, desc, l, m, r);
-            stats[0] += recursionStats[0];
-            stats[1] += recursionStats[1];
+            externalStats = merge(count, desc, l, m, r);
+            stats[0] += externalStats[0];
+            stats[1] += externalStats[1];
         }
 
         return stats;
     }
 
     private static void quickSort(boolean count, boolean desc) {
+        StringBuilder stats = new StringBuilder();
+        int[] sortStats;
 
+        // Unsorted
+        sortStats = qSort(count, desc, 0, array.size());
+
+        // Extra sorts
+        if (count) {
+            stats.append(sortStats[0] + " " + sortStats[1]);
+
+            // Sorted
+            sortStats = qSort(count, desc, 0, array.size());
+            stats.append(" | " + sortStats[0] + " " + sortStats[1]);
+
+            // Sorted in reverse
+            desc = !desc;
+            sortStats = qSort(count, desc, 0, array.size());
+            stats.append(" | " + sortStats[0] + " " + sortStats[1]);
+
+            System.out.println(stats);
+        }
+        else System.out.println(array.toString());
+    }
+
+    private static int[] partition(boolean count, boolean desc, int start, int end) {
+        // array of results (m, c, pivot index) to be returned
+        int[] results = {0, 0, 0};
+
+        // take first elt as pivot
+        int pivot = array.get(start);
+        results[0]++; // m++
+
+        // initialize left and right
+        int left = start;
+        int right = end;
+
+        // until left and right cross
+        while (left < right) {
+            // search for elt greater than pivot
+            do {
+                // move rightward
+                left++;
+                if (left == array.size()) break;
+                results[1]++; // c++
+            } while (desc && array.get(left) > pivot || !desc && array.get(left) < pivot);
+
+            // search for elt smaller than pivot
+            do {
+                // move leftward
+                right--;
+                results[1]++; // c++
+            } while (desc && array.get(right) < pivot || !desc && array.get(right) > pivot);
+
+            // left and right have not crossed
+            if (left < right) {
+                // swap a[left] and a[right]
+                array.swap(left, right);
+                results[0] += 3; // m += 3
+            }
+        }
+        // swap pivot and a[right]
+        array.swap(start, right);
+        results[0] += 3; // m += 3
+        // return pivot as split point
+        results[2] = right;
+
+        return results;
+    }
+
+    private static int[] qSort(boolean count, boolean desc, int start, int end) {
+        int[] stats = {0, 0}, external;
+
+        if (start < end) {
+
+            // partition the array around split point
+            external = partition(count, desc, start, end);
+            stats[0] += external[0];
+            stats[1] += external[1];
+            int split = external[2];
+
+            // print array partition
+            if (!count && end - start >= 2) {
+                StringBuilder sb = new StringBuilder();
+                for (int idx = start; idx < end; idx++) {
+                    if (idx == split) sb.append("| ");
+                    sb.append(array.get(idx) + " ");
+                    if (idx == split) sb.append("| ");
+                }
+                System.out.println(sb.toString().trim());
+            }
+
+            // sort partitions
+            external = qSort(count, desc, start, split);
+            stats[0] += external[0];
+            stats[1] += external[1];
+            external = qSort(count, desc, split + 1, end);
+            stats[0] += external[0];
+            stats[1] += external[1];
+        }
+
+        return stats;
     }
 
 }
-// VERSION 3.0
+// VERSION 4.1
